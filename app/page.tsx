@@ -1,5 +1,7 @@
 "use client";
 
+import { AboutSection } from "@/components/AboutSection";
+import { ExperienceSection } from "@/components/ExperienceSection";
 import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
 import ProgressBar from "@/components/ProgressBar";
@@ -35,6 +37,9 @@ export default function Home() {
       {/* <CustomCursor /> */}
       <ProgressBar />
       <Navbar />
+      <AboutSection />
+      <ExperienceSection />
+
       {/* <main>
        
       </main>
