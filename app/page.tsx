@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 2500);
     const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
+      "(prefers-color-scheme: dark)",
     ).matches;
     setIsDark(prefersDark);
     return () => clearTimeout(timer);
@@ -34,16 +34,9 @@ export default function Home() {
     <div className={`${isDark ? "dark" : "light"}`}>
       {/* <CustomCursor /> */}
       <ProgressBar />
-      <Navbar isDark={isDark} setIsDark={setIsDark} />
+      <Navbar />
       {/* <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Services />
-        <Projects />
-        <Experience />
-        <Testimonials />
-        <Contact />
+       
       </main>
       <Footer /> */}
     </div>

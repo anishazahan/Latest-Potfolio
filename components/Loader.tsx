@@ -1,101 +1,112 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export default function Loader() {
   const [progress, setProgress] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prev) => {
-        const next = prev + Math.random() * 30;
-        return next > 90 ? 90 : next;
+        if (prev >= 100) {
+          clearInterval(timer);
+          setTimeout(() => setIsLoaded(true), 300); // Small pause at 100%
+          return 100;
+        }
+        // Realistic loading speed
+        const diff = Math.random() * 15;
+        return Math.min(prev + diff, 100);
       });
-    }, 200);
+    }, 150);
 
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="fixed inset-0 bg-dark-background flex items-center justify-center z-[9999] overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-20">
-        <motion.div
-          className="absolute top-20 left-20 w-32 h-32 rounded-full border-2 border-dark-accent"
-          animate={{ rotate: 360 }}
-          transition={{
-            duration: 8,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-40 right-20 w-24 h-24 border-2 border-dark-accent-light"
-          animate={{ rotate: -360 }}
-          transition={{
-            duration: 6,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
-        />
-      </div>
-
-      {/* Main loader content */}
-      <motion.div
-        className="text-center z-10"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="mb-8">
-          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-dark-accent to-dark-accent-light bg-clip-text text-transparent mb-4">
-            &lt;/Anisha&gt;
-          </h1>
-          <p className="text-dark-text-muted text-lg">
-            Senior Frontend Developer
-          </p>
-        </div>
-
-        {/* Progress bar */}
-        <div className="w-64 h-1.5 bg-dark-border rounded-full overflow-hidden">
+    <AnimatePresence>
+      {!isLoaded && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden">
+          {/* --- TOP LAYER --- */}
           <motion.div
-            className="h-full bg-gradient-to-r from-dark-accent to-dark-accent-light"
-            initial={{ width: 0 }}
-            animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.3 }}
+            initial={{ y: 0 }}
+            exit={{ y: "-100%" }}
+            transition={{ duration: 0.9, ease: [0.87, 0, 0.13, 1] }}
+            className="absolute top-0 left-0 w-full h-1/2 bg-[#0a0a0a] border-b border-[#b19777]/20 z-20"
           />
-        </div>
 
-        {/* Tech stack icons - animated */}
-        <div className="mt-12 flex justify-center gap-8 flex-wrap max-w-2xl">
-          {[
-            { icon: "⚛️", label: "React" },
-            { icon: "▲", label: "Next.js" },
-            { icon: "✨", label: "Tailwind" },
-            { icon: "🎬", label: "Framer" },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.2 }}
-              className="text-3xl"
-            >
+          {/* --- BOTTOM LAYER --- */}
+          <motion.div
+            initial={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{ duration: 0.9, ease: [0.87, 0, 0.13, 1] }}
+            className="absolute bottom-0 left-0 w-full h-1/2 bg-[#0a0a0a] border-t border-[#b19777]/20 z-20"
+          />
+
+          {/* --- CENTRAL CONTENT (Gently fades out before split) --- */}
+          <motion.div
+            className="relative z-30 text-center"
+            exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.4 } }}
+          >
+            {/* Unique Logo Style */}
+            <div className="mb-8 flex flex-col items-center">
               <motion.div
-                animate={{ y: [0, -10, 0] }}
+                className="w-16 h-16 border-2 border-[#b19777] flex items-center justify-center rotate-45 mb-10"
+                animate={{ rotate: [45, 225, 45] }}
                 transition={{
-                  duration: 2,
-                  delay: i * 0.3,
-                  repeat: Number.POSITIVE_INFINITY,
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
                 }}
               >
-                {item.icon}
+                <span className="text-[#b19777] text-3xl font-black -rotate-45">
+                  A
+                </span>
               </motion.div>
-            </motion.div>
-          ))}
+
+              <h1 className="text-4xl md:text-5xl font-black tracking-[0.3em] uppercase text-white mb-2">
+                Anisha<span className="text-[#b19777]"></span>
+              </h1>
+              <p className="text-[#b19777] text-xs tracking-[0.5em] font-light uppercase opacity-70">
+                Frontend Developer
+              </p>
+            </div>
+
+            {/* Professional Progress Bar */}
+            <div className="relative w-64 h-[2px] bg-white/5 mx-auto overflow-hidden">
+              <motion.div
+                className="absolute top-0 left-0 h-full bg-[#b19777]"
+                initial={{ width: 0 }}
+                animate={{ width: `${progress}%` }}
+                style={{ boxShadow: "0 0 15px #b19777" }}
+              />
+            </div>
+
+            <div className="mt-4 font-mono text-[10px] text-[#b19777] tracking-widest uppercase">
+              {Math.round(progress)}% Loaded
+            </div>
+
+            {/* Stack Indicator */}
+            <div className="mt-12 flex justify-center gap-6">
+              {["REACT", "TS", "NEXT", "REDUX"].map((tech, i) => (
+                <motion.span
+                  key={tech}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.4 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="text-[9px] font-bold tracking-tighter text-white border border-white/20 px-2 py-1"
+                >
+                  {tech}
+                </motion.span>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Ambient Background Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#b19777]/5 blur-[120px] z-10" />
         </div>
-      </motion.div>
-    </div>
+      )}
+    </AnimatePresence>
   );
 }
