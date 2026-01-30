@@ -38,7 +38,7 @@ export const ExperienceSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-[#0a0a0a] border-t border-white/5 px-6 md:px-16">
+    <section className="py-10 sm:py-24 bg-[#0a0a0a] border-t border-white/5 px-6 md:px-16">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12">
         {/* Sticky Header */}
         <div className="lg:col-span-4 lg:sticky lg:top-32 h-fit">

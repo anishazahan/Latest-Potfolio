@@ -5,6 +5,7 @@ import { ExperienceSection } from "@/components/ExperienceSection";
 import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
 import ProgressBar from "@/components/ProgressBar";
+import ServicesSection from "@/components/ServicesSection";
 import SkillsSection from "@/components/SkillsSection";
 import { useEffect, useState } from "react";
 
@@ -42,6 +43,7 @@ export default function Home() {
       <AboutSection />
       <ExperienceSection />
       <SkillsSection />
+      <ServicesSection />
 
       {/* <main>
        
