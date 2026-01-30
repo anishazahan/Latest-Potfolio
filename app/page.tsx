@@ -3,6 +3,7 @@
 import { AboutSection } from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
+import Footer from "@/components/Footer";
 import ImpactSection from "@/components/ImpactSection";
 import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
@@ -50,6 +51,7 @@ export default function Home() {
       <ImpactSection />
       <TestimonialSection />
       <ContactSection />
+      <Footer />
 
       {/* <main>
        
