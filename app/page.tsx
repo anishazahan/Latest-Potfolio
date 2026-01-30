@@ -1,6 +1,7 @@
 "use client";
 
 import { AboutSection } from "@/components/AboutSection";
+import ContactSection from "@/components/ContactSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
 import ImpactSection from "@/components/ImpactSection";
 import Loader from "@/components/Loader";
@@ -48,6 +49,7 @@ export default function Home() {
       <ServicesSection />
       <ImpactSection />
       <TestimonialSection />
+      <ContactSection />
 
       {/* <main>
        
