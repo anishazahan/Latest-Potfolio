@@ -37,6 +37,7 @@ export default function Home() {
       {/* <CustomCursor /> */}
       <ProgressBar />
       <Navbar />
+
       <AboutSection />
       <ExperienceSection />
 

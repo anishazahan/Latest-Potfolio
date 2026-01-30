@@ -6,11 +6,18 @@ export const ExperienceSection = () => {
   const experiences = [
     {
       company: "KuiperZ",
-      role: "Junior Software Developer",
+      role: "Junior Software Engineer",
       period: "Oct 2023 – Present",
       type: "Full Time - Remote",
-      desc: "Contributing to RyseNova (HRM Software). Building multi-tenant authentication systems and scalable payroll processing modules.",
-      tech: ["Next.js", "TypeScript", "Redux Toolkit", "RTK Query"],
+      desc: "Contributing to RyseNova (HRM Software). Building multi-tenant authentication systems and scalable payroll processing modules.Multivendor e commerce development and debugging",
+      tech: [
+        "Next.js",
+        "TypeScript",
+        "Redux Toolkit",
+        "RTK Query",
+        "Google Map",
+        "Excel.js",
+      ],
     },
     {
       company: "Amelia Soft",
@@ -26,7 +33,7 @@ export const ExperienceSection = () => {
       period: "Nov 2022 – Jan 2023",
       type: "Internship",
       desc: "Executed client-based job portal frontend development focusing on responsive UI frameworks and clean code principles.",
-      tech: ["React.js", "Context API", "Sass"],
+      tech: ["React.js", "Next,js", "Context API", "Sass"],
     },
   ];
 
@@ -43,8 +50,8 @@ export const ExperienceSection = () => {
             Evolution.
           </h2>
           <p className="text-gray-500 text-sm max-w-[280px] leading-relaxed italic">
-            "Committed to continuous learning and delivering high-quality user
-            experiences across diverse environments."
+            &quot;Committed to continuous learning and delivering high-quality
+            user experiences across diverse environments.&quot;
           </p>
         </div>
 
@@ -56,7 +63,7 @@ export const ExperienceSection = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="group relative bg-white/[0.02] border border-white/5 p-8 md:p-12 rounded-3xl hover:bg-white/[0.04] hover:border-[#b19777]/30 transition-all duration-500"
+              className="group relative bg-white/[0.02] border border-white/5 p-8 md:p-12 rounded-sm hover:bg-white/[0.04] hover:border-[#b19777]/30 transition-all duration-500"
             >
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
                 <div>
@@ -71,7 +78,7 @@ export const ExperienceSection = () => {
                     <span className="text-gray-500">{exp.type}</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 bg-[#b19777]/10 px-4 py-2 rounded-full border border-[#b19777]/20">
+                <div className="flex items-center gap-2 bg-[#b19777]/10 px-4 py-2 rounded-sm border border-[#b19777]/20">
                   <Calendar size={14} className="text-[#b19777]" />
                   <span className="text-[10px] font-bold text-[#b19777] uppercase">
                     {exp.period}

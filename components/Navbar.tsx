@@ -232,7 +232,7 @@ const PortfolioHero = () => {
       )}
 
       {/* --- HERO MAIN --- */}
-      <main className="relative pt-10 sm:pt-28 md:pt-32 lg:pt-40 flex flex-col justify-center min-h-screen max-w-[1400px] mx-auto px-4 sm:px-6 md:px-14 lg:px-16 z-10">
+      <section className="relative pt-10 sm:pt-28 md:pt-32 lg:pt-40 flex flex-col justify-center min-h-screen max-w-[1400px] mx-auto px-4 sm:px-6 md:px-14 lg:px-16 z-10">
         <motion.div
           style={{ y: yWatermark }}
           className="absolute right-0 top-[15%] sm:top-[15%] md:top-[20%] lg:top-[25%] text-[10vw] sm:text-[14vw] md:text-[15vw] lg:text-[16vw] font-black text-white/[0.04] select-none pointer-events-none leading-none"
@@ -305,21 +305,21 @@ const PortfolioHero = () => {
                 <h3 className="text-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black italic">
                   <CountUp value={2.5} suffix="+" />
                 </h3>
-                <p className="text-[10px] sm:text-[11px] tracking-[0.3em] sm:tracking-[0.4em] text-gray-500 font-bold uppercase mt-2">
-                  Years Experience
+                <p className="text-[10px] sm:text-[11px] tracking-[0.3em] sm:tracking-[0.2em] text-gray-500 font-bold uppercase mt-2">
+                  Years Professional Experience
                 </p>
               </div>
               <div className="text-center lg:text-right flex-1 lg:flex-auto">
                 <h3 className="text-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black italic">
                   <CountUp value={40} suffix="+" />
                 </h3>
-                <p className="text-[10px] sm:text-[11px] tracking-[0.3em] sm:tracking-[0.4em] text-gray-500 font-bold uppercase mt-2">
+                <p className="text-[10px] sm:text-[11px] tracking-[0.3em] sm:tracking-[0.3em] text-gray-500 font-bold uppercase mt-2">
                   Successful Projects
                 </p>
               </div>
             </div>
 
-            <div className="flex mt-5 lg:mt-0 mx-auto lg:mx-0 lg:ml-auto lg:items-end lg:flex-col gap-3 sm:gap-4 self-center lg:self-end">
+            <div className="flex mt-5 lg:mt-0 mx-auto lg:mx-0 lg:ml-auto lg:items-end lg:flex-col gap-3 sm:gap-4 self-center lg:self-end pb-3">
               {[
                 <Linkedin key="li" size={20} className="sm:w-5 sm:h-5" />,
                 <Github key="gh" size={20} className="sm:w-5 sm:h-5" />,
@@ -335,7 +335,7 @@ const PortfolioHero = () => {
             </div>
           </div>
         </div>
-      </main>
+      </section>
     </div>
   );
 };
