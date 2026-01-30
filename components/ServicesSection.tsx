@@ -6,7 +6,9 @@ import {
   LuArrowUpRight,
   LuCode,
   LuComponent,
+  LuDatabase,
   LuSmartphone,
+  LuSparkles,
 } from "react-icons/lu";
 
 export const ServicesSection = () => {
@@ -15,37 +17,65 @@ export const ServicesSection = () => {
       id: "01",
       title: "Frontend Architecture",
       icon: <LuCode />,
-      desc: "Designing scalable, maintainable React and Next.js systems with TypeScript. Focusing on modularity, clean code, and robust state management architectures.",
-      tags: ["Scalability", "Next.js", "System Design"],
+      desc: "Designing scalable, maintainable frontend architectures using React and Next.js with TypeScript. Emphasis on modular patterns, domain-driven structure, clean abstractions, and predictable state management using Redux Toolkit, RTK Query, and React Hook Form with validation",
+      tags: [
+        "Scalability",
+        "React.js",
+        "Next.js",
+        "TypeScript",
+        "System Design",
+      ],
     },
     {
       id: "02",
       title: "High-Performance Web",
       icon: <LuActivity />,
-      desc: "Optimizing Core Web Vitals and Lighthouse scores. Implementing advanced caching, RTK Query, and server-side rendering for lightning-fast delivery.",
-      tags: ["Performance", "SEO", "Vitals"],
+      desc: "Building blazing-fast web applications optimized for Core Web Vitals and Lighthouse scores. Leveraging SSR, ISR, dynamic imports, memoization, advanced caching strategies, and API optimization to deliver exceptional performance at scale.",
+      tags: ["Performance", "SEO", "Web Vitals", "Optimization"],
     },
     {
       id: "03",
-      title: "Design Systems",
-      icon: <LuComponent />,
-      desc: "Bridging the gap between design and code by building comprehensive, accessible component libraries with Tailwind CSS and Shadcn UI.",
-      tags: ["Atomic Design", "A11y", "UI/UX"],
+      title: "API Integration & Data Handling",
+      icon: <LuDatabase />,
+      desc: "Integrating complex REST and GraphQL APIs with robust error handling, optimistic updates, pagination, filtering, and caching. Experienced in handling real-time data, role-based access control, and secure data flows in enterprise applications.",
+      tags: ["REST", "GraphQL", "RTK Query", "API Integration"],
     },
     {
       id: "04",
+      title: "Design Systems & UI/UX Engineering",
+      icon: <LuComponent />,
+      desc: "Creating pixel-perfect, responsive, and accessible design systems that mirror Figma designs exactly. Building reusable UI components with Tailwind CSS and Shadcn UI, ensuring consistency, scalability, and WCAG-compliant accessibility across products.",
+      tags: [
+        "Pixel Perfect",
+        "Design Systems",
+        "A11y",
+        "UI/UX",
+        "Responsive Design",
+        "Cross-Device",
+      ],
+    },
+    {
+      id: "05",
+      title: "Advanced Animations & Micro-Interactions",
+      icon: <LuSparkles />,
+      desc: "Enhancing user experience with smooth, high-performance animations using Framer Motion,GSAP and CSS transitions. Implementing layout animations, gesture-based interactions, shared element transitions, and subtle micro-interactions without sacrificing performance.",
+      tags: ["Framer Motion", "GSAP", "Micro Interactions", "UX Motion"],
+    },
+
+    {
+      id: "06",
       title: "Hybrid Mobile Solutions",
       icon: <LuSmartphone />,
-      desc: "Engineering cross-platform experiences using React Native and Capacitor, ensuring native-level performance from a single codebase.",
-      tags: ["Mobile", "iOS", "Android"],
+      desc: "Developing cross-platform mobile applications using React Native and Capacitor. Sharing business logic across web and mobile while ensuring native-level performance, smooth animations, and consistent UX across iOS and Android.",
+      tags: ["React Native", "Capacitor", "iOS", "Android"],
     },
   ];
 
   return (
-    <section className="py-24 bg-[#0a0a0a] text-white px-6 md:px-16 overflow-hidden">
+    <section className="pb-10 lg:pb-24 bg-[#0a0a0a] text-white px-6 md:px-16 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
-        <div className="flex flex-col lg:flex-row justify-between items-end mb-20 gap-8">
+        <div className="flex flex-col lg:flex-row justify-between items-end mb-10 md:mb-20 gap-8">
           <div className="max-w-2xl">
             <motion.span
               initial={{ opacity: 0 }}
@@ -57,7 +87,7 @@ export const ServicesSection = () => {
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-6xl font-black tracking-tighter leading-[0.9]"
+              className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter leading-[0.9]"
             >
               Elevating Brands through <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#b19777] to-white italic">
@@ -70,13 +100,13 @@ export const ServicesSection = () => {
             whileInView={{ opacity: 1 }}
             className="text-gray-500 text-sm max-w-[300px] leading-relaxed mb-2"
           >
-            I provide full-lifecycle frontend engineering, ensuring your product
+            I provide full lifecycle frontend engineering, ensuring your product
             is as fast as it is beautiful.
           </motion.p>
         </div>
 
         {/* Dynamic Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 border border-white/10 rounded-3xl overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 border border-white/10 rounded-sm overflow-hidden">
           {services.map((service, idx) => (
             <motion.div
               key={service.id}
@@ -109,7 +139,7 @@ export const ServicesSection = () => {
                 {service.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-[9px] font-bold tracking-widest uppercase py-1 px-3 border border-white/10 text-gray-400 rounded-full group-hover:border-[#b19777]/30 transition-colors"
+                    className="text-[9px] font-bold tracking-widest uppercase py-1 px-3 border border-white/10 text-gray-400 rounded-sm group-hover:border-[#b19777]/30 transition-colors"
                   >
                     {tag}
                   </span>
@@ -122,23 +152,6 @@ export const ServicesSection = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* Bottom CTA Overlay */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="mt-16 flex flex-col md:flex-row items-center justify-between p-12 bg-gradient-to-r from-white/5 to-transparent border border-white/10 rounded-3xl"
-        >
-          <div>
-            <h4 className="text-2xl font-bold mb-2">Have a unique vision?</h4>
-            <p className="text-gray-500 text-sm italic">
-              "Tailoring creative choices for high-impact teams."
-            </p>
-          </div>
-          <button className="mt-8 md:mt-0 bg-[#b19777] text-black px-10 py-4 font-black text-xs tracking-widest hover:scale-105 transition-transform rounded-sm">
-            GET IN TOUCH
-          </button>
-        </motion.div>
       </div>
     </section>
   );
