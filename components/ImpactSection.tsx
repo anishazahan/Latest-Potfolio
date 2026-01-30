@@ -23,7 +23,7 @@ const ImpactSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-[#0a0a0a] text-white px-6 md:px-16 border-t border-white/5">
+    <section className=" py-10 lg:py-24 bg-[#0a0a0a] text-white px-6 md:px-16 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-16">

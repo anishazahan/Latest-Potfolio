@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import ProgressBar from "@/components/ProgressBar";
 import ServicesSection from "@/components/ServicesSection";
 import SkillsSection from "@/components/SkillsSection";
+import TestimonialSection from "@/components/TestimonialSection";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -46,6 +47,7 @@ export default function Home() {
       <SkillsSection />
       <ServicesSection />
       <ImpactSection />
+      <TestimonialSection />
 
       {/* <main>
        
