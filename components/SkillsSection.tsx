@@ -135,7 +135,7 @@ const SkillsSection = () => {
             </motion.h2>
           </div>
 
-          {/* Professional Category Switcher */}
+          {/*  Category Switcher */}
 
           <div className="relative flex bg-white/5 p-1 rounded-sm border border-white/10 backdrop-blur-md overflow-x-hidden no-scrollbar max-w-full">
             {skillData.map((cat) => {
@@ -164,7 +164,6 @@ const SkillsSection = () => {
                     />
                   )}
 
-                  {/* Text stays above background */}
                   <span className="relative z-10">{cat.category}</span>
                 </motion.button>
               );
@@ -218,7 +217,7 @@ const SkillsSection = () => {
           </AnimatePresence>
         </div>
 
-        {/* Bottom Industry Indicator */}
+        {/* Bottom  Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -231,8 +230,8 @@ const SkillsSection = () => {
             "Full-Stack Performance",
           ].map((tag) => (
             <div key={tag} className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#b19777]" />
-              <span className="text-[10px] font-bold tracking-widest uppercase text-white">
+              <div className="w-1 h-1 bg-white rotate-45" />
+              <span className="text-[10px] font-bold tracking-widest uppercase text-gray-400">
                 {tag}
               </span>
             </div>

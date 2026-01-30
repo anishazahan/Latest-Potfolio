@@ -2,6 +2,7 @@
 
 import { AboutSection } from "@/components/AboutSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
+import ImpactSection from "@/components/ImpactSection";
 import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
 import ProgressBar from "@/components/ProgressBar";
@@ -44,6 +45,7 @@ export default function Home() {
       <ExperienceSection />
       <SkillsSection />
       <ServicesSection />
+      <ImpactSection />
 
       {/* <main>
        
