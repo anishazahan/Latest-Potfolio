@@ -2,7 +2,6 @@
 
 import { AboutSection } from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
-import Cursor from "@/components/Cursor";
 import { ExperienceSection } from "@/components/ExperienceSection";
 import Footer from "@/components/Footer";
 import ImpactSection from "@/components/ImpactSection";
@@ -42,7 +41,7 @@ export default function Home() {
     >
       <ProgressBar />
       <Navbar />
-      <Cursor />
+      {/* <Cursor /> */}
 
       <AboutSection />
       <ExperienceSection />
