@@ -7,7 +7,17 @@ import {
   useTransform,
 } from "framer-motion";
 import { Github, Linkedin, Mail, Menu, X } from "lucide-react";
+import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
+
+// Navigation items data
+const navItems = [
+  { label: "HOME", href: "#home" },
+  { label: "EXPERIENCE", href: "#experience" },
+  { label: "SERVICES", href: "#services" },
+  { label: "PORTFOLIO", href: "#portfolio" },
+  { label: "CONTACT", href: "#contact" },
+];
 
 // --- Floating Tech Icon Component ---
 const FloatingTech = ({
@@ -73,7 +83,7 @@ const CountUp = ({
 
 const PortfolioHero = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeTab, setActiveTab] = useState("Home");
+  const [activeTab, setActiveTab] = useState("HOME");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   const yWatermark = useTransform(scrollY, [0, 500], [0, -150]);
@@ -136,11 +146,12 @@ const PortfolioHero = () => {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-4 sm:px-6 md:px-16 ${
           isScrolled
-            ? "py-4 sm:py-6 bg-black/95 backdrop-blur-md border-b border-[#b19777]/20"
+            ? "py-6 bg-black/95 backdrop-blur-md border-b border-[#b19777]/20"
             : "py-6 sm:py-8 bg-transparent"
         }`}
       >
         <div className="max-w-[1400px] mx-auto flex justify-between items-center">
+          {/* Logo/Brand */}
           <div className="flex items-center gap-3 group">
             <div className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center border border-[#b19777] rotate-45 group-hover:bg-[#b19777] transition-all duration-500">
               <span className="text-primary group-hover:text-black font-bold text-lg sm:text-xl -rotate-45">
@@ -149,7 +160,7 @@ const PortfolioHero = () => {
             </div>
             <div className="flex flex-col leading-none">
               <span className="text-lg sm:text-xl font-black tracking-tighter uppercase">
-                Anisha
+                ANISHA
               </span>
               <span className="text-[8px] sm:text-[9px] text-primary tracking-[0.4em]">
                 DEVELOPER
@@ -157,29 +168,29 @@ const PortfolioHero = () => {
             </div>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-8">
-            {["Home", "Services", "Work", "Experience", "Contact"].map(
-              (item) => (
-                <button
-                  key={item}
-                  onClick={() => setActiveTab(item)}
-                  className={`text-[11px] font-bold tracking-[0.2em] uppercase transition-all relative py-2 ${
-                    activeTab === item
-                      ? "text-primary"
-                      : "text-gray-500 hover:text-white"
-                  }`}
-                >
-                  {item}
-                  {activeTab === item && (
-                    <motion.div
-                      layoutId="nav-underline"
-                      className="absolute bottom-0 left-0 w-full h-[2px] bg-[#b19777]"
-                    />
-                  )}
-                </button>
-              ),
-            )}
+          {/* Desktop Navigation - UPPERCASE and tightly spaced */}
+          <div className="hidden md:flex items-center gap-4 lg:gap-6">
+            {navItems.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                onClick={() => setActiveTab(item.label)}
+                className={`text-[11px] font-semibold tracking-[0.25em] uppercase transition-all relative py-2 ${
+                  activeTab === item.label
+                    ? "text-primary"
+                    : "text-gray-500 hover:text-white"
+                }`}
+                style={{ letterSpacing: "0.25em" }}
+              >
+                {item.label}
+                {activeTab === item.label && (
+                  <motion.div
+                    layoutId="nav-underline"
+                    className="absolute bottom-0 left-0 w-full h-[1px] bg-[#b19777]"
+                  />
+                )}
+              </Link>
+            ))}
           </div>
 
           {/* Mobile Menu Button */}
@@ -207,25 +218,25 @@ const PortfolioHero = () => {
             onClick={() => setIsMenuOpen(false)}
           />
           <div className="relative z-50 h-full overflow-y-auto">
-            <div className="px-6 py-8">
-              {["Home", "Services", "Work", "Experience", "Contact"].map(
-                (item) => (
-                  <button
-                    key={item}
-                    onClick={() => {
-                      setActiveTab(item);
-                      setIsMenuOpen(false);
-                    }}
-                    className={`w-full text-left py-5 border-b border-[#b19777]/20 text-lg font-bold tracking-[0.2em] uppercase transition-all ${
-                      activeTab === item
-                        ? "text-primary"
-                        : "text-gray-300 hover:text-white"
-                    }`}
-                  >
-                    {item}
-                  </button>
-                ),
-              )}
+            <div className="px-6 py-4 flex flex-col">
+              {navItems.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => {
+                    setActiveTab(item.label);
+                    setIsMenuOpen(false);
+                  }}
+                  className={`w-full text-left py-5 border-b border-[#b19777]/20 text-sm font-semibold tracking-[0.25em] uppercase transition-all ${
+                    activeTab === item.label
+                      ? "text-primary"
+                      : "text-gray-300 hover:text-white"
+                  }`}
+                  style={{ letterSpacing: "0.25em" }}
+                >
+                  {item.label}
+                </Link>
+              ))}
             </div>
           </div>
         </motion.div>
@@ -235,12 +246,12 @@ const PortfolioHero = () => {
       <section className="relative pt-10 sm:pt-28 md:pt-32 lg:pt-40 flex flex-col justify-center min-h-screen max-w-[1400px] mx-auto px-4 sm:px-6 md:px-14 lg:px-16 z-10">
         <motion.div
           style={{ y: yWatermark }}
-          className="absolute right-0 top-[15%] sm:top-[15%] md:top-[20%] lg:top-[25%] text-[10vw] sm:text-[14vw] md:text-[15vw] lg:text-[16vw] font-black text-white/[0.04] select-none pointer-events-none leading-none"
+          className="absolute right-0 top-[25%] sm:top-[15%] md:top-[20%] lg:top-[25%] text-[10vw] sm:text-[14vw] md:text-[15vw] lg:text-[16vw] font-black text-white/[0.04] select-none pointer-events-none leading-none"
         >
           FRONTEND
         </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-6 md:gap-8 lg:gap-12 items-start">
+        <div className="grid lg:grid-cols-12 gap-6 md:gap-8 lg:gap-12 items-start pt-20 sm:pt-10 lg:pt-0">
           <div className="lg:col-span-8 xl:col-span-9">
             <motion.div
               custom={1}
@@ -278,7 +289,7 @@ const PortfolioHero = () => {
               animate="visible"
               className="text-gray-400 text-sm sm:text-base md:text-lg max-w-lg md:max-w-xl lg:max-w-2xl border-l-2 sm:border-l-3 md:border-l-4 border-[#b19777] pl-4 sm:pl-6 md:pl-8 mb-6 md:mb-8"
             >
-              Architecting high performance web systems with 2 years of
+              Architecting high performance web systems with 2.5+ years of
               technical mastery. Specializing in React architectures that bridge
               design and scalable code.
             </motion.p>
@@ -288,33 +299,43 @@ const PortfolioHero = () => {
               variants={fadeInUp}
               initial="hidden"
               animate="visible"
-              className="flex flex-row gap-2  sm:gap-4 md:gap-6"
+              className="flex flex-wrap flex-row gap-2  sm:gap-4 md:gap-6"
             >
-              <button className="hover:opacity-80 text-black px-4 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 font-black text-xs sm:text-sm md:text-base tracking-widest bg-[#b19777] transition-all w-full sm:w-auto text-center">
+              <Link
+                href={"#portfolio"}
+                className="hover:opacity-80 text-black px-4 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 font-black text-xs sm:text-sm md:text-base tracking-widest bg-[#b19777] transition-all w-full sm:w-auto text-center"
+              >
                 VIEW PROJECTS
-              </button>
-              <button className="border px-4 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 font-black text-xs sm:text-sm md:text-base tracking-widest border-[#b19777]/40 transition-all hover:border-[#b19777]/80 w-full sm:w-auto text-center">
+              </Link>
+              <Link
+                target="_blank"
+                href={
+                  "https://drive.google.com/file/d/1qihwWl9lGAoKnIYbKIAE4FPjozh67mTr/view"
+                }
+                className="border px-4 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 font-black text-xs sm:text-sm md:text-base tracking-widest border-[#b19777]/40 transition-all hover:border-[#b19777]/80 w-full sm:w-auto text-center"
+              >
                 SEE RESUME
-              </button>
+              </Link>
             </motion.div>
           </div>
 
           <div className="lg:col-span-4 xl:col-span-3 flex flex-row lg:flex-col justify-between lg:justify-end lg:items-end gap-4 lg:gap-0 mt-8 lg:mt-10 flex-wrap">
-            <div className="flex lg:flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-16 mb-0 lg:mb-12 w-full lg:w-auto">
-              <div className="text-center lg:text-right flex-1 lg:flex-auto">
-                <h3 className="text-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black italic">
-                  <CountUp value={2.5} suffix="+" />
+            <div className="flex  lg:flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-16 mb-0 lg:mb-12 w-full lg:w-auto">
+              <div className="text-right flex-1 lg:flex-auto">
+                <h3 className="text-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black italic flex justify-end">
+                  <CountUp value={2} /> .
+                  <CountUp value={5} suffix="+" />
                 </h3>
                 <p className="text-[10px] sm:text-[11px] tracking-[0.3em] sm:tracking-[0.2em] text-gray-500 font-bold uppercase mt-2">
                   Years Professional Experience
                 </p>
               </div>
-              <div className="text-center lg:text-right flex-1 lg:flex-auto">
+              <div className="text-right flex-1 lg:flex-auto">
                 <h3 className="text-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black italic">
-                  <CountUp value={40} suffix="+" />
+                  <CountUp value={4} suffix="+" />
                 </h3>
                 <p className="text-[10px] sm:text-[11px] tracking-[0.3em] sm:tracking-[0.3em] text-gray-500 font-bold uppercase mt-2">
-                  Successful Projects
+                  Working Experience
                 </p>
               </div>
             </div>

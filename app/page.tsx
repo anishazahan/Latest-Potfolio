@@ -2,11 +2,13 @@
 
 import { AboutSection } from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
+import Cursor from "@/components/Cursor";
 import { ExperienceSection } from "@/components/ExperienceSection";
 import Footer from "@/components/Footer";
 import ImpactSection from "@/components/ImpactSection";
 import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
+import PortfolioSection from "@/components/PortfolioSection";
 import ProgressBar from "@/components/ProgressBar";
 import ServicesSection from "@/components/ServicesSection";
 import SkillsSection from "@/components/SkillsSection";
@@ -18,11 +20,7 @@ export default function Home() {
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 2500);
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
-    setIsDark(prefersDark);
+    const timer = setTimeout(() => setIsLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -39,15 +37,18 @@ export default function Home() {
   }
 
   return (
-    <div className={`${isDark ? "dark" : "light"}`}>
-      {/* <CustomCursor /> */}
+    <div
+      className={`dark bg-[#0a0a0a] selection:bg-[#b19777] selection:text-black`}
+    >
       <ProgressBar />
       <Navbar />
+      <Cursor />
 
       <AboutSection />
       <ExperienceSection />
       <SkillsSection />
       <ServicesSection />
+      <PortfolioSection />
       <ImpactSection />
       <TestimonialSection />
       <ContactSection />

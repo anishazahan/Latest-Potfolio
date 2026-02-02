@@ -89,7 +89,7 @@ export default function Loader() {
 
             {/* Stack Indicator */}
             <div className="mt-12 flex justify-center gap-6">
-              {["REACT", "TS", "NEXT", "REDUX"].map((tech, i) => (
+              {["REACT", "TS", "NEXT", "REDUX", "RTK QUERY"].map((tech, i) => (
                 <motion.span
                   key={tech}
                   initial={{ opacity: 0 }}

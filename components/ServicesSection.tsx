@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 // Icons representing high-level engineering services
 import {
   LuActivity,
@@ -72,7 +73,10 @@ export const ServicesSection = () => {
   ];
 
   return (
-    <section className="pb-10 lg:pb-24 bg-[#0a0a0a] text-white px-6 md:px-16 overflow-hidden">
+    <section
+      id="services"
+      className="pb-10 lg:pb-24 bg-[#0a0a0a] text-white px-6 md:px-16 overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row justify-between items-end mb-10 md:mb-20 gap-8">
@@ -146,9 +150,12 @@ export const ServicesSection = () => {
                 ))}
               </div>
 
-              <button className="flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase text-[#b19777] opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+              <Link
+                href={"#contact"}
+                className="flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase text-[#b19777] opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500"
+              >
                 Discuss Project <LuArrowUpRight size={16} />
-              </button>
+              </Link>
             </motion.div>
           ))}
         </div>

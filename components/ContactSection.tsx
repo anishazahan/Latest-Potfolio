@@ -1,30 +1,81 @@
 "use client";
-import { motion } from "framer-motion";
-import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
+import { AnimatePresence, motion } from "framer-motion";
+import React, { useRef, useState } from "react";
+import { FaCheckCircle, FaWhatsapp } from "react-icons/fa";
 import {
   LuArrowRight,
   LuGithub,
   LuLinkedin,
   LuMail,
   LuMapPin,
-  LuMessageSquare,
   LuPhone,
+  LuX,
 } from "react-icons/lu";
 
 const ContactSection = () => {
-  const [formState, setFormState] = useState("idle");
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateForm = (data: FormData) => {
+    const newErrors: { [key: string]: string } = {};
+    const email = data.get("reply_to") as string;
+    const name = data.get("from_name") as string;
+    const subject = data.get("subject") as string;
+
+    if (!name) newErrors.from_name = "Name is required";
+    if (!subject) newErrors.subject = "Subject is required";
+    if (!email) {
+      newErrors.reply_to = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.reply_to = "Email is invalid";
+    }
+
+    return newErrors;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormState("submitting");
-    setTimeout(() => setFormState("success"), 2000);
+    if (!formRef.current) return;
+
+    const formData = new FormData(formRef.current);
+    const validationErrors = validateForm(formData);
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    setErrors({});
+    setIsSubmitting(true);
+
+    try {
+      await emailjs.sendForm(
+        "service_7nxfhza",
+        "template_nxv8y5j",
+        formRef.current,
+        "8r7BCETcxl2BVq4wE",
+      );
+
+      setShowSuccessModal(true);
+      formRef.current.reset();
+    } catch (error) {
+      // alert("Something went wrong. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <section className="py-24 bg-[#0a0a0a] text-white px-6 md:px-16 overflow-hidden">
+    <section
+      id="contact"
+      className="py-10 lg:pt-16 lg:pb-20 bg-[#0a0a0a] text-white px-6 md:px-16 overflow-hidden relative"
+    >
       <div className="max-w-7xl mx-auto">
-        {/* Header - Architectural Typography */}
-        <div className="mb-20">
+        {/* Header */}
+        <div className="mb-10 lg:mb-20">
           <motion.span
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -41,69 +92,64 @@ const ContactSection = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left Column: Direct Outreach & Identity */}
+          {/* Left Column */}
           <div className="lg:col-span-5 space-y-8">
             <div className="bg-white/[0.02] border border-white/5 p-10 rounded-sm relative overflow-hidden group">
-              {/* Gold Accent Corner */}
               <div className="absolute top-0 right-0 w-2 h-0 bg-[#b19777] group-hover:h-full transition-all duration-700" />
-
-              <h3 className="text-2xl font-bold mb-8">Contact Information</h3>
+              <h3 className="text-2xl font-bold mb-8 text-primary">
+                Contact Information
+              </h3>
 
               <div className="space-y-6">
-                <div className="flex items-center gap-6 group/item">
-                  <div className="w-12 h-12 rounded-sm bg-white/5 border border-white/10 flex items-center justify-center text-[#b19777] group-hover/item:bg-[#b19777] group-hover/item:text-black transition-all">
-                    <LuMail size={20} />
+                {[
+                  {
+                    icon: <LuMail />,
+                    label: "Email Me",
+                    val: "anishazahan13@gmail.com",
+                  },
+                  {
+                    icon: <LuMapPin />,
+                    label: "Location",
+                    val: "Jashore, Khulna, Bangladesh",
+                  },
+                  { icon: <LuPhone />, label: "Phone", val: "+8801979552658" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-6 group/item">
+                    <div className="w-12 h-12 rounded-sm bg-white/5 border border-white/10 flex items-center justify-center text-[#b19777] group-hover/item:bg-[#b19777] group-hover/item:text-black transition-all">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">
+                        {item.label}
+                      </p>
+                      <p className="text-lg font-medium">{item.val}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">
-                      Email Me
-                    </p>
-                    <p className="text-lg font-medium">
-                      anishazahan13@gmail.com
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-6 group/item">
-                  <div className="w-12 h-12 rounded-sm bg-white/5 border border-white/10 flex items-center justify-center text-[#b19777] group-hover/item:bg-[#b19777] group-hover/item:text-black transition-all">
-                    <LuMapPin size={20} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">
-                      Location
-                    </p>
-                    <p className="text-lg font-medium">
-                      Jashore, Khulna, Bangladesh
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-6 group/item">
-                  <div className="w-12 h-12 rounded-sm bg-white/5 border border-white/10 flex items-center justify-center text-[#b19777] group-hover/item:bg-[#b19777] group-hover/item:text-black transition-all">
-                    <LuPhone size={20} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">
-                      Phone
-                    </p>
-                    <p className="text-lg font-medium">+8801979552658</p>
-                  </div>
-                </div>
+                ))}
               </div>
 
               <div className="mt-12 pt-8 border-t border-white/5 flex gap-4">
-                {[LuLinkedin, LuGithub, LuMessageSquare].map((Icon, i) => (
-                  <button
+                {[
+                  {
+                    icon: <LuLinkedin />,
+                    url: "https://www.linkedin.com/in/anisha-zahan/",
+                  },
+                  { icon: <LuGithub />, url: "https://github.com/anishazahan" },
+                  { icon: <FaWhatsapp />, url: "https://wa.me/+8801301902371" },
+                ].map((social, i) => (
+                  <a
                     key={i}
+                    href={social.url}
+                    target="_blank"
+                    rel="noreferrer"
                     className="w-10 h-10 border border-white/10 flex items-center justify-center hover:border-[#b19777] hover:text-[#b19777] transition-all rounded-sm"
                   >
-                    <Icon size={18} />
-                  </button>
+                    {social.icon}
+                  </a>
                 ))}
               </div>
             </div>
 
-            {/* Availability Badge */}
             <div className="p-8 border border-[#b19777]/20 bg-[#b19777]/5 rounded-sm flex items-center justify-between">
               <div>
                 <p className="text-xs font-bold text-[#b19777] uppercase tracking-widest mb-1">
@@ -117,29 +163,41 @@ const ContactSection = () => {
             </div>
           </div>
 
-          {/* Right Column: Interaction Form */}
+          {/* Right Column: Form */}
           <div className="lg:col-span-7">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">
                     Your Full Name
                   </label>
                   <input
+                    name="from_name"
                     type="text"
                     placeholder="John Doe"
-                    className="w-full bg-white/[0.03] border border-white/10 px-6 py-4 rounded-sm focus:border-[#b19777]/50 focus:outline-none transition-all placeholder:text-gray-700"
+                    className={`w-full bg-white/[0.03] border ${errors.from_name ? "border-red-500" : "border-white/10"} px-6 py-4 rounded-sm focus:border-[#b19777]/50 focus:outline-none transition-all placeholder:text-gray-700`}
                   />
+                  {errors.from_name && (
+                    <p className="text-red-500 text-[10px] uppercase font-bold">
+                      {errors.from_name}
+                    </p>
+                  )}
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">
                     Professional Email
                   </label>
                   <input
+                    name="reply_to"
                     type="email"
                     placeholder="john@company.com"
-                    className="w-full bg-white/[0.03] border border-white/10 px-6 py-4 rounded-sm focus:border-[#b19777]/50 focus:outline-none transition-all placeholder:text-gray-700"
+                    className={`w-full bg-white/[0.03] border ${errors.reply_to ? "border-red-500" : "border-white/10"} px-6 py-4 rounded-sm focus:border-[#b19777]/50 focus:outline-none transition-all placeholder:text-gray-700`}
                   />
+                  {errors.reply_to && (
+                    <p className="text-red-500 text-[10px] uppercase font-bold">
+                      {errors.reply_to}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -148,10 +206,16 @@ const ContactSection = () => {
                   Subject
                 </label>
                 <input
+                  name="subject"
                   type="text"
                   placeholder="Project Collaboration"
-                  className="w-full bg-white/[0.03] border border-white/10 px-6 py-4 rounded-sm focus:border-[#b19777]/50 focus:outline-none transition-all placeholder:text-gray-700"
+                  className={`w-full bg-white/[0.03] border ${errors.subject ? "border-red-500" : "border-white/10"} px-6 py-4 rounded-sm focus:border-[#b19777]/50 focus:outline-none transition-all placeholder:text-gray-700`}
                 />
+                {errors.subject && (
+                  <p className="text-red-500 text-[10px] uppercase font-bold">
+                    {errors.subject}
+                  </p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -159,6 +223,7 @@ const ContactSection = () => {
                   Your Vision
                 </label>
                 <textarea
+                  name="message"
                   rows={6}
                   placeholder="Briefly describe your project goals..."
                   className="w-full bg-white/[0.03] border border-white/10 px-6 py-4 rounded-sm focus:border-[#b19777]/50 focus:outline-none transition-all resize-none placeholder:text-gray-700"
@@ -166,21 +231,59 @@ const ContactSection = () => {
               </div>
 
               <motion.button
+                disabled={isSubmitting}
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full md:w-auto bg-[#b19777] text-black px-12 py-5 font-black text-xs tracking-[0.3em] uppercase flex items-center justify-center gap-4 hover:bg-white transition-colors group"
+                className="w-full md:w-auto bg-[#b19777] text-black px-12 py-5 font-black text-xs tracking-[0.3em] uppercase flex items-center justify-center gap-4 hover:bg-white transition-colors group disabled:opacity-50"
               >
-                {formState === "submitting"
-                  ? "SENDING..."
-                  : formState === "success"
-                    ? "SENT SUCCESSFULLY"
-                    : "INDEPENDENT INQUIRY"}
+                {isSubmitting ? "TRANSMITTING..." : "INDEPENDENT INQUIRY"}
                 <LuArrowRight className="group-hover:translate-x-2 transition-transform" />
               </motion.button>
             </form>
           </div>
         </div>
       </div>
+
+      {/* SUCCESS MODAL */}
+      <AnimatePresence>
+        {showSuccessModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/40 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="relative bg-[#0f0f0f] border border-[#b19777]/30 py-10 px-5 text-center max-w-sm w-full rounded-sm"
+            >
+              <button
+                onClick={() => setShowSuccessModal(false)}
+                className="absolute top-4 right-4 text-gray-500 hover:text-primary"
+              >
+                <LuX size={20} />
+              </button>
+              <div className="flex justify-center mb-6">
+                <div className="w-16 h-16 bg-[#b19777]/10 rounded-full flex items-center justify-center text-green-700 shadow-[0_0_20px_rgba(177,151,119,0.2)]">
+                  <FaCheckCircle size={32} />
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold uppercase mb-2">
+                Message Received
+              </h3>
+              <p className="text-gray-400 text-sm mt-5 mb-8">
+                Thank you for reaching out. I will review your inquiry and get
+                back to you within 24 hours.
+              </p>
+              <div className="inline-block ml-auto px-6">
+                <button
+                  onClick={() => setShowSuccessModal(false)}
+                  className="w-full bg-primary text-black  px-6 py-4 font-black text-[10px] tracking-widest uppercase hover:bg-white transition-all"
+                >
+                  Ok
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

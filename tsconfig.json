@@ -20,7 +20,10 @@
     ],
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+
+    "noImplicitAny": false, // Change from true to false to allow 'any'
+    "strictNullChecks": false // Helps if some data might be null/undefined
   },
   "include": [
     "next-env.d.ts",

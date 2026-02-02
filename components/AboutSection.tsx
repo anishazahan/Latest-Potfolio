@@ -11,7 +11,10 @@ export const AboutSection = () => {
   ];
 
   return (
-    <section className="py-5 sm:py-24 bg-[#0a0a0a] text-white px-6 md:px-16 overflow-hidden">
+    <section
+      id="about"
+      className="py-5 sm:py-24 bg-[#0a0a0a] text-white px-6 md:px-16 overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Side*/}
@@ -30,6 +33,7 @@ export const AboutSection = () => {
                   className="w-full h-[450px] lg:h-[550px] object-cover grayscale hover:grayscale-0 transition-all duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-black/20" />
               </div>
             </div>
 
@@ -39,11 +43,9 @@ export const AboutSection = () => {
               transition={{ duration: 4, repeat: Infinity }}
               className="absolute -bottom-8 -right-8 z-20 bg-white/5 backdrop-blur-xl border border-[#b19777]/30 p-8 rounded-sm"
             >
-              <h3 className="text-[#b19777] text-4xl font-black italic">
-                2.5+
-              </h3>
-              <p className="text-[10px] tracking-[0.3em] text-gray-400 uppercase">
-                Years of Mastery
+              <h3 className="text-[#b19777] text-4xl font-black italic">10+</h3>
+              <p className="text-[10px] tracking-[0.3em] text-gray-400 uppercase mt-2">
+                Commercial Projects Completed
               </p>
             </motion.div>
           </motion.div>

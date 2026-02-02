@@ -14,24 +14,28 @@ const TestimonialSlider = () => {
       role: "Founder",
       content:
         "An exceptionally skilled frontend developer who excels in creating intuitive and responsive user interfaces. Her attention to detail truly sets her apart.",
-      image:
-        "https://pixabay.com/get/g886f7847c1f07973756209b55f190666d6c697813a34a949666060934827376e19197066928e37048123285747683_640.jpg",
+      image: "/sulesh.webp",
     },
     {
-      name: "Alex Regelman",
-      role: "Co-founder, Colabrio",
+      name: "Ameliasoft",
+      role: "Software Agency",
       content:
         "I would highly recommend her services. We worked together on complex animations and the pixel-perfect delivery was outstanding.",
-      image:
-        "https://pixabay.com/get/g654817a8685e1973756209b55f190666d6c697813a34a949666060934827376e19197066928e37048123285747683_640.jpg",
+      image: "/amelio.webp",
     },
     {
       name: "Syed Hussain",
       role: "Project Manager",
       content:
         "Proficient in crafting responsive and visually appealing user interfaces with a strong command of modern web technologies and frameworks.",
-      image:
-        "https://pixabay.com/get/gd98177a885f07973756209b55f190666d6c697813a34a949666060934827376e19197066928e37048123285747683_640.jpg",
+      image: "/syed.webp",
+    },
+    {
+      name: "Shivay Dey",
+      role: "Software Engineer",
+      content:
+        "Anisha's has a deep understanding of frontend frameworks and design principles. Her ability to bring complex design concepts to life while maintaining top-notch performance makes her an asset to any development team.",
+      image: "/Shivay.webp",
     },
   ];
 
@@ -112,7 +116,7 @@ const TestimonialSlider = () => {
                       height={56}
                       src={item.image}
                       alt={item.name}
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all"
+                      className="w-full h-full object-cover  group-hover:grayscale-0 transition-all"
                     />
                   </div>
                   <div>
