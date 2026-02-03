@@ -64,7 +64,7 @@ const Footer = () => {
       text: [
         "Collaboration: Project timelines and deliverables are established at the start of our contract.",
         "Intellectual Property: Upon full payment, ownership of the frontend code is transferred to the client.",
-        "Liability: I ensure high-quality, bug-free code but am not liable for third-party hosting or backend failures.",
+        "Liability: I ensure high-quality, bug-free code but I am not liable for third-party hosting or backend failures.",
       ],
     },
   };
@@ -93,7 +93,7 @@ const Footer = () => {
                   Anisha
                 </span>
                 <span className="text-[8px] sm:text-[9px] text-primary tracking-[0.4em]">
-                  DEVELOPER
+                  Engineer
                 </span>
               </div>
             </div>
@@ -132,13 +132,13 @@ const Footer = () => {
                 <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#b19777] mb-8">
                   {group.title}
                 </h4>
-                <ul className="space-y-4">
+                <ul className="space-y-4 ">
                   {group.links.map((link, j) => (
                     <li key={j}>
                       {link?.type ? (
                         <button
                           onClick={() => setActiveLegal(link.type as string)}
-                          className="text-sm text-gray-500 hover:text-white transition-colors flex items-center group cursor-pointer"
+                          className="text-sm text-gray-500 hover:text-white transition-colors flex items-center group cursor-pointer whitespace-nowrap"
                         >
                           {link.label}
                           <LuArrowUpRight
@@ -149,7 +149,7 @@ const Footer = () => {
                       ) : (
                         <a
                           href={link.href}
-                          className="text-sm text-gray-500 hover:text-white transition-colors flex items-center group"
+                          className="text-sm text-gray-500 hover:text-white transition-colors flex items-center group whitespace-nowrap"
                         >
                           {link.label}
                           <LuArrowUpRight

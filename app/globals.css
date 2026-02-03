@@ -60,7 +60,7 @@ html {
   display: none !important;
 }
 
-@media (pointer: fine) {
+/* @media (pointer: fine) {
   body {
     cursor: none;
   }
@@ -69,4 +69,4 @@ html {
   .cursor-pointer {
     cursor: none;
   }
-}
+} */

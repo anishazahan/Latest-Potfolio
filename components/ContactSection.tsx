@@ -36,6 +36,20 @@ const ContactSection = () => {
     return newErrors;
   };
 
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name } = e.target;
+    // If an error exists for this field, remove it
+    if (errors[name]) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formRef.current) return;
@@ -94,41 +108,62 @@ const ContactSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column */}
           <div className="lg:col-span-5 space-y-8">
-            <div className="bg-white/[0.02] border border-white/5 p-10 rounded-sm relative overflow-hidden group">
+            <div className="bg-white/[0.02] border border-white/5 p-5 sm:p-10 rounded-sm relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-2 h-0 bg-[#b19777] group-hover:h-full transition-all duration-700" />
-              <h3 className="text-2xl font-bold mb-8 text-primary">
+              <h3 className="text-2xl font-bold mb-4 sm:mb-8 text-primary">
                 Contact Information
               </h3>
 
-              <div className="space-y-6">
+              <div className="space-y-10 py-4">
                 {[
                   {
-                    icon: <LuMail />,
+                    icon: <LuMail size={20} />,
                     label: "Email Me",
                     val: "anishazahan13@gmail.com",
+                    href: "mailto:anishazahan13@gmail.com",
                   },
                   {
-                    icon: <LuMapPin />,
+                    icon: <LuMapPin size={20} />,
                     label: "Location",
                     val: "Jashore, Khulna, Bangladesh",
+                    href: "https://maps.google.com/?q=Jashore,Khulna,Bangladesh",
                   },
-                  { icon: <LuPhone />, label: "Phone", val: "+8801979552658" },
+                  {
+                    icon: <LuPhone size={20} />,
+                    label: "Phone",
+                    val: "+880 1979 552658",
+                    href: "tel:+8801979552658",
+                  },
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-6 group/item">
-                    <div className="w-12 h-12 rounded-sm bg-white/5 border border-white/10 flex items-center justify-center text-[#b19777] group-hover/item:bg-[#b19777] group-hover/item:text-black transition-all">
-                      {item.icon}
+                  <a
+                    key={i}
+                    href={item.href}
+                    target={item.label === "Location" ? "_blank" : undefined}
+                    className="flex items-start gap-4 sm:gap-6 group/item cursor-none"
+                  >
+                    {/* Icon Container - Tighter and more architectural */}
+                    <div className="relative shrink-0">
+                      <div className="w-12 h-14 border border-white/10 bg-white/[0.02] flex items-center justify-center text-[#b19777] group-hover/item:border-[#b19777] group-hover/item:bg-[#b19777] group-hover/item:text-black transition-all duration-500 rounded-sm">
+                        {item.icon}
+                      </div>
+                      {/* Decorative accent line */}
+                      <div className="absolute -bottom-2 -left-2 w-4 h-4 border-l border-b border-[#b19777]/0 group-hover/item:border-[#b19777]/50 transition-all duration-500" />
                     </div>
-                    <div>
-                      <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">
+
+                    {/* Text Content - Better hierarchy */}
+                    <div className="flex flex-col justify-center h-14">
+                      <p className="text-[10px] text-gray-500 uppercase font-black tracking-[0.3em] mb-1 group-hover/item:text-[#b19777] transition-colors">
                         {item.label}
                       </p>
-                      <p className="text-lg font-medium">{item.val}</p>
+                      <p className="text-base md:text-lg font-bold text-white/90 group-hover/item:text-white transition-colors tracking-tight break-words">
+                        {item.val}
+                      </p>
                     </div>
-                  </div>
+                  </a>
                 ))}
               </div>
 
-              <div className="mt-12 pt-8 border-t border-white/5 flex gap-4">
+              <div className="mt-6 sm:mt-12 pt-8 border-t border-white/5 flex gap-4">
                 {[
                   {
                     icon: <LuLinkedin />,
@@ -174,6 +209,7 @@ const ContactSection = () => {
                   <input
                     name="from_name"
                     type="text"
+                    onChange={handleInputChange}
                     placeholder="John Doe"
                     className={`w-full bg-white/[0.03] border ${errors.from_name ? "border-red-500" : "border-white/10"} px-6 py-4 rounded-sm focus:border-[#b19777]/50 focus:outline-none transition-all placeholder:text-gray-700`}
                   />
@@ -190,6 +226,7 @@ const ContactSection = () => {
                   <input
                     name="reply_to"
                     type="email"
+                    onChange={handleInputChange}
                     placeholder="john@company.com"
                     className={`w-full bg-white/[0.03] border ${errors.reply_to ? "border-red-500" : "border-white/10"} px-6 py-4 rounded-sm focus:border-[#b19777]/50 focus:outline-none transition-all placeholder:text-gray-700`}
                   />
@@ -208,6 +245,7 @@ const ContactSection = () => {
                 <input
                   name="subject"
                   type="text"
+                  onChange={handleInputChange}
                   placeholder="Project Collaboration"
                   className={`w-full bg-white/[0.03] border ${errors.subject ? "border-red-500" : "border-white/10"} px-6 py-4 rounded-sm focus:border-[#b19777]/50 focus:outline-none transition-all placeholder:text-gray-700`}
                 />

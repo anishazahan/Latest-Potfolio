@@ -19,6 +19,15 @@ const navItems = [
   { label: "CONTACT", href: "#contact" },
 ];
 
+const socials = [
+  {
+    icon: <Linkedin size={20} />,
+    url: "https://www.linkedin.com/in/anisha-zahan/",
+  },
+  { icon: <Github size={20} />, url: "https://github.com/anishazahan" },
+  { icon: <Mail size={20} />, url: "mailto:anishazahan13@gmail.com" },
+];
+
 // --- Floating Tech Icon Component ---
 const FloatingTech = ({
   children,
@@ -107,6 +116,49 @@ const PortfolioHero = () => {
     }),
   };
 
+  // 1. SCROLL SPY LOGIC
+  useEffect(() => {
+    const handleScrollSpy = () => {
+      // Get all sections defined in navItems
+      const sections = navItems.map((item) => ({
+        id: item.href.replace("#", ""),
+        label: item.label,
+      }));
+
+      // Find which section is currently in the middle of the viewport
+      const currentSection = sections.find((section) => {
+        const element = document.getElementById(section.id);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // We check if the top of the section is near the top of the screen
+          // Using 200px offset for better "feel"
+          return rect.top <= 200 && rect.bottom >= 200;
+        }
+        return false;
+      });
+
+      if (currentSection) {
+        setActiveTab(currentSection.label);
+      } else if (window.scrollY < 100) {
+        // Fallback to HOME if at the very top
+        setActiveTab("HOME");
+      }
+    };
+
+    const handleScrollNavbar = () => setIsScrolled(window.scrollY > 50);
+
+    window.addEventListener("scroll", handleScrollSpy);
+    window.addEventListener("scroll", handleScrollNavbar);
+
+    // Run once on mount to set initial state
+    handleScrollSpy();
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollSpy);
+      window.removeEventListener("scroll", handleScrollNavbar);
+    };
+  }, []);
+
   return (
     <div className="relative bg-[#0a0a0a] text-white min-h-screen overflow-hidden selection:bg-[#b19777] selection:text-black">
       {/* --- FLOATING TECH STACK  --- */}
@@ -162,8 +214,8 @@ const PortfolioHero = () => {
               <span className="text-lg sm:text-xl font-black tracking-tighter uppercase">
                 ANISHA
               </span>
-              <span className="text-[8px] sm:text-[9px] text-primary tracking-[0.4em]">
-                DEVELOPER
+              <span className="text-[8px] uppercase sm:text-[9px] text-primary tracking-[0.4em]">
+                Engineer
               </span>
             </div>
           </div>
@@ -262,7 +314,7 @@ const PortfolioHero = () => {
             >
               <span className="w-8 sm:w-10 md:w-12 h-[1px] bg-[#b19777]" />
               <span className="text-primary text-xs md:text-sm tracking-[0.5em] font-semibold uppercase">
-                Frontend Developer
+                Frontend Engineer
               </span>
             </motion.div>
 
@@ -278,7 +330,7 @@ const PortfolioHero = () => {
                 Frontend
               </span>
               <span className="block">
-                Developer<span className="text-primary">.</span>
+                Engineer<span className="text-primary">.</span>
               </span>
             </motion.h1>
 
@@ -339,19 +391,25 @@ const PortfolioHero = () => {
                 </p>
               </div>
             </div>
-
             <div className="flex mt-5 lg:mt-0 mx-auto lg:mx-0 lg:ml-auto lg:items-end lg:flex-col gap-3 sm:gap-4 self-center lg:self-end pb-3">
-              {[
-                <Linkedin key="li" size={20} className="sm:w-5 sm:h-5" />,
-                <Github key="gh" size={20} className="sm:w-5 sm:h-5" />,
-                <Mail key="ml" size={20} className="sm:w-5 sm:h-5" />,
-              ].map((icon, i) => (
-                <div
+              {socials.map((social, i) => (
+                <motion.a
                   key={i}
-                  className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center border border-[#b19777]/40 rounded-sm hover:text-gray-400 text-primary hover:border-[#b19777]/80 transition-all cursor-pointer"
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -5, color: "#b19777" }}
+                  className="
+        w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14
+        flex items-center justify-center
+        border border-[#b19777]/20 rounded-sm
+        text-primary hover:text-gray-400
+        hover:border-[#b19777]/80
+        transition-all cursor-pointer
+      "
                 >
-                  {icon}
-                </div>
+                  {social.icon}
+                </motion.a>
               ))}
             </div>
           </div>

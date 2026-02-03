@@ -69,7 +69,7 @@ export default function Loader() {
                 Anisha<span className="text-[#b19777]"></span>
               </h1>
               <p className="text-[#b19777] text-xs tracking-[0.5em] font-light uppercase opacity-70">
-                Frontend Developer
+                Frontend Engineer
               </p>
             </div>
 

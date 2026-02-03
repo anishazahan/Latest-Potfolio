@@ -1,7 +1,9 @@
 "use client";
 
 import { AboutSection } from "@/components/AboutSection";
+import AwardSection from "@/components/AwardSection";
 import ContactSection from "@/components/ContactSection";
+import Cursor from "@/components/Cursor";
 import { ExperienceSection } from "@/components/ExperienceSection";
 import Footer from "@/components/Footer";
 import ImpactSection from "@/components/ImpactSection";
@@ -41,10 +43,11 @@ export default function Home() {
     >
       <ProgressBar />
       <Navbar />
-      {/* <Cursor /> */}
+      <Cursor />
 
       <AboutSection />
       <ExperienceSection />
+      <AwardSection />
       <SkillsSection />
       <ServicesSection />
       <PortfolioSection />
@@ -52,11 +55,6 @@ export default function Home() {
       <TestimonialSection />
       <ContactSection />
       <Footer />
-
-      {/* <main>
-       
-      </main>
-      <Footer /> */}
     </div>
   );
 }

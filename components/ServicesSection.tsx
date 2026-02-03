@@ -91,7 +91,7 @@ export const ServicesSection = () => {
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter leading-[0.9]"
+              className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter leading-10 lg:leading-[0.9]"
             >
               Elevating Brands through <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#b19777] to-white italic">
@@ -117,7 +117,7 @@ export const ServicesSection = () => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: idx * 0.1 }}
-              className="group relative bg-[#0a0a0a] p-10 md:p-16 hover:bg-[#111] transition-all duration-700"
+              className="group relative bg-[#0a0a0a] p-6 sm:p-10 md:p-16 hover:bg-[#111] transition-all duration-700"
             >
               {/* Background Accent */}
               <div className="absolute top-0 left-0 w-1 h-0 bg-[#b19777] group-hover:h-full transition-all duration-500" />
