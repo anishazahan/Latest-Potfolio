@@ -1,7 +1,6 @@
 "use client";
 
 import { AboutSection } from "@/components/AboutSection";
-import AwardSection from "@/components/AwardSection";
 import ContactSection from "@/components/ContactSection";
 import Cursor from "@/components/Cursor";
 import { ExperienceSection } from "@/components/ExperienceSection";
@@ -47,7 +46,7 @@ export default function Home() {
 
       <AboutSection />
       <ExperienceSection />
-      <AwardSection />
+      {/* <AwardSection /> */}
       <SkillsSection />
       <ServicesSection />
       <PortfolioSection />

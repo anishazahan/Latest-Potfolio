@@ -9,7 +9,7 @@ export const ExperienceSection = () => {
       role: "Junior Software Engineer",
       period: "Oct 2023 – Present",
       type: "Full Time - Remote",
-      desc: "Contributing to RyseNova (HRM Software). Building multi-tenant authentication systems and scalable payroll processing modules.Multivendor e commerce development and debugging",
+      desc: "Developed a scalable web application using React, Next.js, TypeScript and others.Built reusable UI components,implemented new features based on requirements,Integrated advanced APIs,Ensured code quality through testing, clean architecture, and best practices,Optimized performance and enhanced overall user experience,Collaborated with cross-functional teams in an agile environment, contributing to code reviews and continuous improvements ",
       tech: [
         "Next.js",
         "TypeScript",
