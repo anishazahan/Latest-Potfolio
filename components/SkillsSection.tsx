@@ -2,33 +2,34 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { MdAnimation } from "react-icons/md";
-import { RiCodeBoxLine } from "react-icons/ri";
 
 import {
   SiDocker,
   SiExpress,
   SiFigma,
-  SiFirebase,
+  SiFlutter,
   SiGithub,
+  SiGraphql,
+  SiGreensock,
   SiJira,
-  SiMongodb,
+  SiMui,
   SiNextdotjs,
   SiNodedotjs,
   SiPostgresql,
   SiPostman,
   SiPrisma,
   SiReact,
-  SiRedis,
   SiRedux,
-  SiSlack,
-  SiStripe,
+  SiSass,
+  SiShadcnui,
   SiTailwindcss,
   SiTypescript,
   SiVercel,
 } from "react-icons/si";
-import { TbDeviceMobile, TbLayoutDashboard } from "react-icons/tb";
+import { TbApi, TbBrandVue, TbDatabase, TbDeviceMobile } from "react-icons/tb";
 
 const SkillsSection = () => {
+  // Adjusted categories to match your provided image
   const [activeCategory, setActiveCategory] = useState("Expertise");
 
   const skillData = [
@@ -37,75 +38,57 @@ const SkillsSection = () => {
       skills: [
         { name: "React.js", icon: <SiReact />, level: "Core Expertise" },
         { name: "Next.js", icon: <SiNextdotjs />, level: "Professional" },
+        { name: "Vue.js", icon: <TbBrandVue />, level: "Frontend" },
         {
           name: "TypeScript",
           icon: <SiTypescript />,
           level: "Enterprise Ready",
         },
-        { name: "Redux Toolkit", icon: <SiRedux />, level: "Professional" },
+        { name: "Redux Toolkit", icon: <SiRedux />, level: "State Management" },
+        { name: "TanStack Query", icon: <TbApi />, level: "Data Fetching" },
+      ],
+    },
+    {
+      category: "UI/UX & Styling",
+      skills: [
         {
           name: "Tailwind CSS",
           icon: <SiTailwindcss />,
           level: "Production Speed",
         },
-        { name: "Framer Motion", icon: <MdAnimation />, level: "Professional" },
+        { name: "Shadcn UI", icon: <SiShadcnui />, level: "Modern UI" },
+        { name: "Framer Motion", icon: <MdAnimation />, level: "Animations" },
+        { name: "GSAP", icon: <SiGreensock />, level: "Advanced Motion" },
+        { name: "Material UI", icon: <SiMui />, level: "Component Lib" },
+        { name: "SCSS", icon: <SiSass />, level: "Pre-processor" },
       ],
     },
     {
-      category: "Comfortable",
+      category: "Backend & Databases",
       skills: [
         { name: "Node.js", icon: <SiNodedotjs />, level: "Backend Logic" },
         { name: "Express.js", icon: <SiExpress />, level: "API Architect" },
-        { name: "Mongo DB", icon: <SiMongodb />, level: "Data Modeling" },
-        { name: "Firebase", icon: <SiFirebase />, level: "Cloud Integration" },
-        {
-          name: "UI/UX Design",
-          icon: <TbLayoutDashboard />,
-          level: "User Centric",
-        },
+        { name: "Mongoose", icon: <TbDatabase />, level: "Data Modeling" },
+        { name: "GraphQL", icon: <SiGraphql />, level: "Query Language" },
+        { name: "PostgreSQL", icon: <SiPostgresql />, level: "Relational DB" },
+        { name: "Prisma", icon: <SiPrisma />, level: "ORM Logic" },
       ],
     },
     {
-      category: "Familiar",
+      category: "Mobile & Tools",
       skills: [
-        { name: "PostgreSQL", icon: <SiPostgresql />, level: "Relational DB" },
-        { name: "Prisma", icon: <SiPrisma />, level: "ORM Logic" },
-        { name: "Redis", icon: <SiRedis />, level: "Caching" },
         {
           name: "React Native",
           icon: <TbDeviceMobile />,
           level: "Hybrid Mobile",
         },
-      ],
-    },
-    {
-      category: "Tools",
-      skills: [
-        { name: "GitHub", icon: <SiGithub />, level: "CI/CD & Flow" },
+        { name: "Flutter", icon: <SiFlutter />, level: "Cross-Platform" },
+        { name: "GitHub/Git", icon: <SiGithub />, level: "Version Control" },
+        { name: "Docker", icon: <SiDocker />, level: "Containerization" },
         { name: "Figma", icon: <SiFigma />, level: "Design Handoff" },
         { name: "Postman", icon: <SiPostman />, level: "API Testing" },
-        { name: "Docker", icon: <SiDocker />, level: "Containerization" },
+        { name: "Jira/Slack", icon: <SiJira />, level: "Agile/Scrum" },
         { name: "Vercel", icon: <SiVercel />, level: "Deployment" },
-        {
-          name: "Slack",
-          icon: <SiSlack />,
-          level: "Collaboration",
-        },
-        {
-          name: "Jira",
-          icon: <SiJira />,
-          level: "Project Management",
-        },
-        {
-          name: "VS Code",
-          icon: <RiCodeBoxLine />,
-          level: "Development Environment",
-        },
-        {
-          name: "Stripe",
-          icon: <SiStripe />,
-          level: "Project Management",
-        },
       ],
     },
   ];
@@ -136,8 +119,7 @@ const SkillsSection = () => {
           </div>
 
           {/*  Category Switcher */}
-
-          <div className="relative flex bg-white/5 p-1 rounded-sm border border-white/10 backdrop-blur-md overflow-x-hidden no-scrollbar max-w-full">
+          <div className="relative flex bg-white/5 p-1 rounded-sm border border-white/10 backdrop-blur-md overflow-x-auto no-scrollbar max-w-full">
             {skillData.map((cat) => {
               const isActive = activeCategory === cat.category;
 
@@ -146,16 +128,14 @@ const SkillsSection = () => {
                   key={cat.category}
                   onClick={() => setActiveCategory(cat.category)}
                   whileTap={{ scale: 0.95 }}
-                  whileHover={{ scale: 1.03 }}
-                  className={`relative flex items-center gap-2 px-3  sm:px-6 py-3 rounded-sm text-[10px] font-bold tracking-wider sm:tracking-widest uppercase whitespace-nowrap transition-colors ${
+                  className={`relative flex items-center gap-2 px-4 sm:px-6 py-3 rounded-sm text-[10px] font-bold tracking-wider uppercase whitespace-nowrap transition-colors ${
                     isActive ? "text-black" : "text-gray-500 hover:text-white"
                   }`}
                 >
-                  {/* Sliding Active Background */}
                   {isActive && (
                     <motion.span
                       layoutId="activeCategory"
-                      className="absolute inset-0 bg-[#b19777] rounded-sm shadow-lg"
+                      className="absolute inset-0 bg-[#b19777] rounded-sm"
                       transition={{
                         type: "spring",
                         stiffness: 300,
@@ -163,7 +143,6 @@ const SkillsSection = () => {
                       }}
                     />
                   )}
-
                   <span className="relative z-10">{cat.category}</span>
                 </motion.button>
               );
@@ -190,7 +169,6 @@ const SkillsSection = () => {
                   min-h-[160px] flex flex-col justify-between
                 `}
                 >
-                  {/* Dynamic Icon with Gold Hover Effect */}
                   <div className="z-10">
                     <div className="w-12 h-12 rounded-sm bg-white/[0.03] border border-white/5 flex items-center justify-center text-3xl text-gray-400 group-hover:text-[#b19777] group-hover:bg-[#b19777]/10 transition-all duration-500">
                       {skill.icon}
@@ -200,7 +178,6 @@ const SkillsSection = () => {
                     </h3>
                   </div>
 
-                  {/* Dynamic Label Content */}
                   <div className="z-10 flex items-center gap-2 mt-4">
                     <div className="h-[1px] w-4 bg-[#b19777]/40 group-hover:w-8 transition-all" />
                     <span className="text-[10px] font-bold text-[#b19777] uppercase tracking-widest">
@@ -208,7 +185,6 @@ const SkillsSection = () => {
                     </span>
                   </div>
 
-                  {/* Subtle Geometric Background Decoration */}
                   <div className="absolute -bottom-4 -right-4 text-[#b19777]/5 font-black text-7xl group-hover:text-[#b19777]/10 transition-colors select-none pointer-events-none">
                     {idx + 1}
                   </div>
@@ -217,7 +193,7 @@ const SkillsSection = () => {
           </AnimatePresence>
         </div>
 
-        {/* Bottom  Indicator */}
+        {/* Bottom Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -226,8 +202,8 @@ const SkillsSection = () => {
           {[
             "Scalable Architecture",
             "Responsive/Advance Animation UX",
-            "Atomic Design",
-            "Full-Stack Performance",
+            "Performance Optimization",
+            "Full-Stack Reliability",
           ].map((tag) => (
             <div key={tag} className="flex items-center gap-2">
               <div className="w-1 h-1 bg-white rotate-45" />

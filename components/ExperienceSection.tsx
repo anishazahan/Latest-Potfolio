@@ -6,10 +6,10 @@ export const ExperienceSection = () => {
   const experiences = [
     {
       company: "KuiperZ",
-      role: "Junior Software Engineer",
+      role: "Associate Software Engineer",
       period: "Oct 2023 – Present",
       type: "Full Time - Remote",
-      desc: "Developed a scalable web application using React, Next.js, TypeScript and others.Built reusable UI components,implemented new features based on requirements,Integrated advanced APIs,Ensured code quality through testing, clean architecture, and best practices,Optimized performance and enhanced overall user experience,Collaborated with cross-functional teams in an agile environment, contributing to code reviews and continuous improvements ",
+      desc: " Developed a scalable ERP web application using React, Next.js, TypeScript and others. Built reusable UI components,implemented new features based on requirements,Integrated advanced APIs. Ensured code quality through testing, clean architecture, and best practices. Developed and maintained Asset, Reports, Attendance, Payroll, Employee, and Leave Management modules,   with integrations for Google Maps, live tracking, Google Analytics, PDF,Excel,ESV export and Other features. Collaborated with cross-functional teams in an agile environment, code reviews and continuous improvements ",
       tech: [
         "Next.js",
         "TypeScript",

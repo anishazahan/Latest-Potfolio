@@ -341,7 +341,7 @@ const PortfolioHero = () => {
               animate="visible"
               className="text-gray-400 text-sm sm:text-base md:text-lg max-w-lg md:max-w-xl lg:max-w-2xl border-l-2 sm:border-l-3 md:border-l-4 border-[#b19777] pl-4 sm:pl-6 md:pl-8 mb-6 md:mb-8"
             >
-              Architecting high performance web systems with 2.5+ years of
+              Architecting high performance web systems with 3 years of
               technical mastery. Specializing in React architectures that bridge
               design and scalable code.
             </motion.p>
@@ -375,8 +375,7 @@ const PortfolioHero = () => {
             <div className="flex  lg:flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-16 mb-0 lg:mb-12 w-full lg:w-auto">
               <div className="text-right flex-1 lg:flex-auto">
                 <h3 className="text-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black italic flex justify-end">
-                  <CountUp value={2} /> .
-                  <CountUp value={5} suffix="+" />
+                  <CountUp value={3} />
                 </h3>
                 <p className="text-[10px] sm:text-[11px] tracking-[0.3em] sm:tracking-[0.2em] text-gray-500 font-bold uppercase mt-2">
                   Years Professional Experience

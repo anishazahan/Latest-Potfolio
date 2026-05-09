@@ -120,7 +120,7 @@ export const AboutSection = () => {
               viewport={{ once: true }}
               className="text-gray-400 text-lg leading-relaxed mb-8 border-l-2 border-[#b19777]/30 pl-6"
             >
-              I&apos;m Anisha Zahan Hashi. With 2.5+ years of professional
+              I&apos;m Anisha Zahan Hashi. With 3 years of professional
               expertise in React.js, Next.js, and TypeScript, I specialize in
               building scalable, high-performance web applications. I&apos;m
               passionate about creating exceptional user experiences while
